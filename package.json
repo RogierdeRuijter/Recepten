@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "astro": "^5.16.6",
-    "open-graph-scraper": "^6.11.0",
+    "jsdom": "^26.1.0",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1"
   }
