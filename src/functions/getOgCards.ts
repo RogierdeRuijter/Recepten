@@ -35,6 +35,8 @@ async function scrapeOg(url: string): Promise<OgCard> {
     redirect: 'follow',
   });
 
+  console.log(res);
+
   if (!res.ok) {
     throw new Error(`Failed to fetch ${url}`);
   }
