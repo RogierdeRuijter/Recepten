@@ -1,16 +1,85 @@
 ---
+import { getOgCards } from "../functions/getOgCards.ts";
 
+const urls = [
+  "https://www.leukerecepten.nl/recepten/gnocchi-met-pesto-en-courgette/",
+];
+
+const cards = await getOgCards(urls);
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Recepten</title>
+  </head>
+  <body>
+    <h1>Recepten</h1>
+    <section class="grid">
+      {
+        cards.map((card) => (
+          <a href={card.url} class="card" target="_blank">
+            {card.image && (
+              <img src={card.image} alt={card.title} loading="lazy" />
+            )}
+
+            <div class="content">
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+              <span>{card.siteName}</span>
+            </div>
+          </a>
+        ))
+      }
+    </section>
+
+    <style>
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1rem;
+      }
+
+      .card {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        background: white;
+        transition: transform 0.15s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+      }
+
+      .card img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+      }
+
+      .content {
+        padding: 0.75rem;
+      }
+
+      .content h3 {
+        font-size: 1rem;
+        margin: 0 0 0.25rem;
+      }
+
+      .content p {
+        font-size: 0.875rem;
+        color: #555;
+      }
+
+      .content span {
+        font-size: 0.75rem;
+        color: #888;
+      }
+    </style>
+  </body>
 </html>
