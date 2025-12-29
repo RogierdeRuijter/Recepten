@@ -3,11 +3,10 @@ import { getOgCards } from "../functions/getOgCards.ts";
 
 const urls = [
   "https://www.leukerecepten.nl/recepten/gnocchi-met-pesto-en-courgette/",
+  "https://culinea.nl/groene-asperges-bakken/",
 ];
 
 const cards = await getOgCards(urls);
-
-console.log(cards);
 ---
 
 <html lang="en">
@@ -38,8 +37,16 @@ console.log(cards);
     </section>
 
     <style>
+      html {
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+        padding: 2rem;
+        background: #f9fafb;
+      }
+
       .grid {
         display: grid;
+        display: grid-lanes;
         grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
         gap: 1rem;
       }
@@ -70,6 +77,7 @@ console.log(cards);
 
       .content h3 {
         font-size: 1rem;
+        line-height: 1.25;
         margin: 0 0 0.25rem;
       }
 
